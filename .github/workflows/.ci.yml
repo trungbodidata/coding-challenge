@@ -1,0 +1,22 @@
+# This workflow builds and runs all the unit tests
+
+name: CI
+
+on:
+  workflow_call:
+
+jobs:
+  build:
+    name: Build & Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - run: npm ci
+
+      - name: Run Unit Tests
+        run: npm run test
