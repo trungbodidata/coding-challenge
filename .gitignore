@@ -18,6 +18,5 @@ flow-coverage
 .env
 dist
 yarn-error.log
-package-lock.json
 .history
 .npmrc
