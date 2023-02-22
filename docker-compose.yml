@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+
+  mongo:
+    image: mongo
+    restart: always
+    container_name: mongo_db
+    # env_file: .env
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 123
+      MONGO_INITDB_DATABASE: "coding-challenge"
+    ports:
+      - "27017:27017"
+      
+  server:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    env_file: .env.docker
+    restart: always
+    container_name: coding-challenge
+    ports:
+      - "9000:3000"
+    links:
+     - "mongo"
